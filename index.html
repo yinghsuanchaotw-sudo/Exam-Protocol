@@ -14,18 +14,24 @@
       --warn:#d88a00;
       --bad:#c0392b;
     }
-    html,body{height:100%;}
+    html{height:100%;}
     body{
-      margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica, Arial;
+      min-height:100vh;
+      margin:0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica, Arial;
       background:var(--bg);
       color:var(--text);
-      display:flex; align-items:center; justify-content:center;
+      display:block;
+      overflow:auto;
     }
-    .app{width:min(1200px,96vw);}
-    .grid{display:grid; grid-template-columns: 1fr 340px; gap:20px;}
-    @media (max-width: 900px){.grid{grid-template-columns:1fr;}}
+    .app{max-width:1400px; width:min(1400px,96vw); margin:24px auto;}
+    /* widen the protocol block */
+    .grid{display:grid; grid-template-columns: 1fr 600px; gap:20px; align-items:start;}
+    @media (max-width: 1100px){.grid{grid-template-columns:1fr;}}
+
     .card{background:var(--card); border:1px solid #ddd; border-radius:12px; box-shadow: 0 4px 12px rgba(0,0,0,0.08);}
     .pad{padding:20px 22px;}
+
     .headline{font-size:clamp(42px, 8vw, 64px); font-weight:700; margin:0;}
     .sub{color:var(--muted); font-size:15px;}
     .row{display:flex; gap:12px; align-items:center; flex-wrap:wrap}
@@ -36,7 +42,7 @@
     .btn.warn{background:var(--warn); border-color:var(--warn); color:#fff}
     .btn.bad{background:var(--bad); border-color:var(--bad); color:#fff}
 
-    .big{font-size: clamp(64px, 12vw, 120px); font-variant-numeric: tabular-nums; line-height:1.05; font-weight:800;}
+    .big{font-size: clamp(64px, 10vw, 110px); font-variant-numeric: tabular-nums; line-height:1.05; font-weight:800;}
     .date{font-size: clamp(14px, 2.4vw, 18px); color: var(--muted)}
 
     .timer{display:grid; grid-template-columns: 1fr; gap:8px}
@@ -52,8 +58,14 @@
     .progress{height:10px; background:#eee; border-radius:999px; overflow:hidden}
     .bar{height:100%; width:0%; background: var(--accent); transition: width 0.2s ease}
 
-    .section-title{font-weight:700; margin:0 0 8px 0; font-size:14px; color:#333}
-    .protocol{font-size:14px; line-height:1.6; color:#222}
+    .section-title{font-weight:800; margin:0 0 8px 0; font-size:20px; color:#222}
+    .protocol{font-size:18px; line-height:1.8; color:#111; font-weight:700}
+    .scroll{max-height:calc(100vh - 160px); overflow:auto; padding-right:8px;}
+
+    @media (max-height: 700px){
+      .big{font-size: clamp(48px, 9vw, 90px);}
+      .protocol{font-size:16px; line-height:1.6;}
+    }
   </style>
 </head>
 <body>
@@ -90,18 +102,20 @@
       <!-- Right: Exam Protocol -->
       <aside class="card pad">
         <div class="section-title">Exam Protocol</div>
-        <div class="protocol" id="protocolText">
-          <ol>
-            <li>All bags and jackets at the front, side, or back of the room.</li>
-            <li>No hoods, hats, sunglasses, or earphones.</li>
-            <li>We will <strong>NOT</strong> answer questions during the exam (write concerns on the concern page).</li>
-            <li>You may tear off scratch paper and formula sheet but must return all pages at the end.</li>
-            <li>You can write on any space in the question booklet, but keep the bubble sheet clean except for answers.</li>
-            <li>There are <strong>4 versions</strong>: A, B, C, and D. Bubble in your version.</li>
-            <li>Print your full name and PID on the question booklet and on the bubble sheet.</li>
-            <li>No bathroom breaks. All eyes on your own exam. Both hands on table all time.</li>
-            <li>In case of emergency: empty pockets, hand in your exam, and let the instructor know. We will assign a TA/ULA to escort you, and you must be back within 4 minutes.</li>
-          </ol>
+        <div class="scroll">
+          <div class="protocol" id="protocolText">
+            <ol>
+              <li>All bags and jackets at the front, side, or back of the room.</li>
+              <li>No hoods, hats, sunglasses, or earphones.</li>
+              <li>We will <strong>NOT</strong> answer questions during the exam (write concerns on the concern page).</li>
+              <li>You may tear off scratch paper and formula sheet but must return all pages at the end.</li>
+              <li>You can write on any space in the question booklet, but keep the bubble sheet clean except for answers.</li>
+              <li>There are <strong>4 versions</strong>: A, B, C, and D. Bubble in your version.</li>
+              <li>Print your full name and PID on the question booklet and on the bubble sheet.</li>
+              <li>No bathroom breaks. All eyes on your own exam. Both hands on table all time.</li>
+              <li>In case of emergency: empty pockets, hand in your exam, and let the instructor know. We will assign a TA/ULA to escort you, and you must be back within 4 minutes.</li>
+            </ol>
+          </div>
         </div>
       </aside>
     </div>
